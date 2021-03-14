@@ -4,9 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <title>interactive-form</title>
+    <style>
+        /* .size-select {display:none;} */
+    </style>
 </head>
 <body>
-    
+    <form class="container my-5">
+        <div class="form-group">
+            <p>상품선택</p>
+            <select class="form-control" id="option1">
+                <option>모자</option>
+                <option>셔츠</option>
+                <option>바지</option>
+            </select>
+            <div class="size-select">
+                <p class="mt-4">사이즈선택</p>
+                <select class="form-control" id="option2">
+                    <!-- <option>95</option>
+                    <option>100</option>
+                    <option>105</option> -->
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // input 이벤트 : input값이 바뀔때 발동
+        // change 이벤트 : input값이 바뀌고 focus잃을때 발동
+        // .val(); => input에 입력한 값 가져옴
+
+        // 예제) select 인풋에서 셔츠라는 값을 선택하면 밑에 그 ui를 보여줌.
+        /*
+        $("#option1").on('change', function(){
+            if( $('#option1').val() == '셔츠' ) {
+                $('.size-select').show();
+            } else {
+                $('.size-select').hide();
+            }
+        });
+        */
+
+        
+        // html 동적으로 생성하기
+        // $().append();  append 함수는 내부에 특정 html을 안에 넣을 수 있음
+        // 템플릿을 만들어서 넣음.. var 템플릿 = '<div></div>;
+        /*
+        $("#option1").on('change', function(){
+            if( $('#option1').val() == '셔츠' ) {
+                var 셔츠사이즈 = `<option>80</option>
+                <option>85</option>
+                <option>90</option>`;
+
+                $('#option2').append(셔츠사이즈);
+            }
+
+            if( $('#option1').val() == '바지' ) {
+                var 바지사이즈 = `<option>26</option>
+                <option>27</option>
+                <option>28</option>`;
+
+                $('#option2').html('').append(바지사이즈);
+            }
+        });
+        */
+
+
+        //반복문 사용
+        var 바지사이즈 = [26,28,30,32,34,36];
+        /*
+        $("#option1").on('change', function(){
+            if( $('#option1').val() == '바지' ) {
+                for ( var i = 0; i < 6; i++ ){
+                    var 템플릿 = `<option>${바지사이즈[i]}</option>`;
+                    $('#option2').append(템플릿);
+                }
+            }
+        });
+        */
+
+        // forEach 반복문 사용
+        $("#option1").on('change', function(){
+            if( $('#option1').val() == '바지' ) {
+                바지사이즈.forEach(function(i){ // forEach의 i값은 저장된 데이터를 뜻함,, 배열의 값이 들어옴
+                    var 템플릿 = `<option>${i}</option>`;
+                    $('#option2').append(템플릿);
+                })
+            }
+        });
+
+    </script>
 </body>
 </html>
