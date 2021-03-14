@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array자료형, for반복문</title>
+</head>
+<body>
+    <script>
+        var 출석부 = ['흥민', '영희', '철수', '재석', '철수'];
+
+        function 이름찾기(구멍){
+            for (i=0; i<5; i++) {
+                if (구멍 == 출석부[i]){
+                    console.log('있어요');
+                    return // 한번 발견하면 함수를 아예 끝내버림
+                }
+            }
+        }
+        이름찾기('철수');
+    </script>
+</body>
+</html>
