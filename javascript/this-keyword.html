@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this 키워드를 알아보자</title>
+</head>
+<body>
+    <script>
+        'use strict'; //자바스크립트를 엄격하게 사용
+
+        console.log(this); //{window}
+        
+        function 함수(){
+            console.log(this); //window //strict모드+일반함수 내에서 쓰면 undefined
+        };
+        함수();
+
+        var 오브젝트 = {
+            data : 'kim',
+            함수 : function(){ //() => {} arrow function 으로 쓰면 this값을 함수밖에 있던거 그대로 씀,, window가 뜸
+                console.log('안녕');
+            }
+        };
+        오브젝트.함수(); //오브젝트 내 함수안에서 this를 쓰면,, 그 함수를 가지고있는 오브젝트를 뜻함..
+        /*
+        data : 'kim',
+        함수 : function(){
+            console.log('안녕');
+        }
+        */
+
+
+        //this는 나를 담고있는 오브젝트를 나타냄!!!
+
+
+    </script>
+</body>
+</html>
