@@ -60,7 +60,33 @@
 
 <script>
 
+const getObj = document.querySelectorAll('.key');
+const getObjParent = getObj[0].parentNode;
+const audio =document.querySelectorAll('audio');
 
+window.addEventListener('keydown', e => {
+  const currentKey = e.which;
+
+  getObj.forEach((el) => {
+    const getObjKey = el.dataset.key;
+    if(currentKey == getObjKey) {
+      el.classList.add('playing');
+    }
+  });
+
+  audio.forEach((el)=>{
+    const getAudioKey = el.dataset.key;
+    if(currentKey == getAudioKey) {
+      el.play();
+    }
+  });
+});
+
+window.addEventListener('keyup', e => {
+  getObj.forEach((el) => {
+    el.classList.remove('playing');
+  });
+})
 
 </script>
 
