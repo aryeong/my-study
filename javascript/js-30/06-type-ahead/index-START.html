@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+fetch(endpoint)
+  .then(res => res.json()) // .json() 메서드는 JSON 응답을 JavaScript 객체 리터럴로 구문분석합니다.
+  .then(json => {
+    const cities = [];
+    cities.push(...json);
+    
+    const city = cities.map(e => e.city);
+
+    function cityFilter(match) {
+      return city.filter(e => {
+        return e.includes(match)
+      })
+    }
+
+    const search = document.querySelector('.search');
+    const suggestions = document.querySelector('.suggestions');
+
+    const showMatch = ()=> {
+      const text = search.value;
+      const matchText = cityFilter(text);
+
+      let showList = matchText.map(el => {
+        return `<li>${el}</li>`
+      }).join('');
+
+      suggestions.innerHTML = showList;
+    }
+
+    search.addEventListener('keyup', showMatch);
+
+  });
+
+
+
+</script>
+</body>
+</html>
