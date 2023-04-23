@@ -4,17 +4,66 @@
   <meta charset="UTF-8">
   <title>HTML5 Canvas</title>
   <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
-<canvas id="draw" width="800" height="800"></canvas>
-<script>
-</script>
-
-<style>
+  <style>
   html, body {
     margin: 0;
   }
 </style>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+  const canvas = document.querySelector('#draw');
+  //getContext() 메서드로 캔버스의 드로잉 컨텍스트를 받는다.
+  //ctx를 기준으로 그림을 그리는 기능들이 작동함
+  const ctx = draw.getContext('2d');
+  //캔버스 크기 설정
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  //캔버스 스타일 설정
+  ctx.strokeStyle = 'lime'; //선의 색
+  ctx.lineWidth = 50; //선 두께
+  ctx.lineCap = 'round'; //선 끝모양
+
+
+  let painting = false;
+
+  function startPainting(e) {
+    const x = e.offsetX;
+    const y = e.offsetY;
+
+    ctx.beginPath(); //경로 초기화
+    ctx.moveTo(x, y); //출발점 옮기기
+    painting = true;
+    console.log('시작')
+  }
+  
+  function drawPainting(e) {
+    const x = e.offsetX;
+    const y = e.offsetY;
+    
+    if(!painting) return;
+
+    ctx.lineTo(x, y); //도착 지점
+    ctx.stroke(); //그리기
+    console.log('그리는중')
+  }
+
+  function stopPainting() {
+    ctx.closePath(); //하위경로의 시작점과 연결
+    painting = false;
+    console.log('끝')
+  }
+
+  canvas.addEventListener('mousedown', startPainting)
+  canvas.addEventListener('mousemove', drawPainting)
+  canvas.addEventListener('mouseout', stopPainting)
+  canvas.addEventListener('mouseup', stopPainting)
+
+
+</script>
+
+
 
 </body>
 </html>
