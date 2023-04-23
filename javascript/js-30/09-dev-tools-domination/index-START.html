@@ -19,28 +19,55 @@
     }
 
     // Regular
+    console.log('hello');
 
     // Interpolated
+    console.log('Hello I am a %s string!', '우와');
 
     // Styled
+    console.log(
+      "텍스트에 %c스타일을 넣기 %c초록색!! %c그라디언트도 된다닝", 
+      "color: blue; font-weight: bold", "color: green", 
+      "background-image: linear-gradient(yellow, skyblue); color: navy; padding: 5px;"
+    );
 
     // warning!
+    console.warn('wran!')
 
     // Error :|
+    console.error('error!');
 
     // Info
+    console.info('정보기입~~');
 
     // Testing
+    const p = document.querySelector('p');
+
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.log('Dom Element', p);
+    console.dir('Dom Element', p);
 
     // Grouping together
+    console.group('그룹만들기');
+    console.log('첫번째 메세지');
+    console.log('두번째 메세지');
+    console.groupEnd();
 
     // counting
+    console.count('a');
+    console.count('a');
+    console.count('a');
+    console.count('a');
+    console.count('a');
 
     // timing
+    console.time('타이머');
+    for (var i = 0; i < 10; i++) {console.log(i)};
+    console.timeEnd('타이머');
 
   </script>
 </body>
