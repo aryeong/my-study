@@ -28,7 +28,7 @@
 
   let painting = false;
 
-  function startPainting(e) {
+  const startPainting = e => {
     const x = e.offsetX;
     const y = e.offsetY;
 
@@ -38,7 +38,7 @@
     console.log('시작')
   }
   
-  function drawPainting(e) {
+  const drawPainting = e => {
     const x = e.offsetX;
     const y = e.offsetY;
     
@@ -49,7 +49,7 @@
     console.log('그리는중')
   }
 
-  function stopPainting() {
+  const stopPainting = () => {
     ctx.closePath(); //하위경로의 시작점과 연결
     painting = false;
     console.log('끝')
