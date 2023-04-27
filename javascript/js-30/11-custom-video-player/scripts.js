@@ -4,9 +4,11 @@ class videoPlayer {
   constructor(){
     this.video = document.querySelector('.player__video');
     this.videoBtn = document.querySelector('.player__button');
-    this.play();
+    this.videoVolume = document.querySelector('.player__slider');
+    this.playFunc();
+    this.volumeFunc();
   };
-  play() {
+  playFunc() {
     this.videoBtn.addEventListener('click', () => {
       if (this.video.paused) {
         this.video.play();
@@ -15,8 +17,12 @@ class videoPlayer {
         this.video.pause();
         this.videoBtn.innerText = '❚ ❚';
       }
-    });
-
+    })
+  }
+  volumeFunc() {
+    const volumeValue = this.videoVolume.value;
+    this.video.volume = volumeValue;
+    console.log(volumeValue)
   }
 }
 
